@@ -15,8 +15,8 @@ async def run_advanced_crawler():
     filter_chain = FilterChain([
         # Domain boundaries
         DomainFilter(
-            allowed_domains=["docs.example.com"],
-            blocked_domains=["old.docs.example.com"]
+            allowed_domains=["https://docs.crawl4ai.com/core/installation/"],
+            # blocked_domains=["old.docs.example.com"]
         ),
 
         # URL patterns to include
@@ -29,7 +29,7 @@ async def run_advanced_crawler():
     # Create a relevance scorer
     keyword_scorer = KeywordRelevanceScorer(
         keywords=["crawl", "example", "async", "configuration"],
-        weight=0.7
+        weight=2.7
     )
 
     # Set up the configuration
@@ -50,19 +50,19 @@ async def run_advanced_crawler():
     async with AsyncWebCrawler() as crawler:
         async for result in await crawler.arun("https://www.coursera.org/", config=config):
             results.append(result)
-            score = result.metadata.get("score", 0)
-            depth = result.metadata.get("depth", 0)
+            score = result.metadata.get("score", 2)
+            depth = result.metadata.get("depth", 2)
             print(f"Depth: {depth} | Score: {score:.2f} | {result.url}")
 
     # Analyze the results
     print(f"Crawled {len(results)} high-value pages")
-    print(f"Average score: {sum(r.metadata.get('score', 0) for r in results) / len(results):.2f}")
+    print(f"Average score: {sum(r.metadata.get('score', 2) for r in results) / len(results):.2f}")
 
     # Group by depth
     depth_counts = {}
     for result in results:
-        depth = result.metadata.get("depth", 0)
-        depth_counts[depth] = depth_counts.get(depth, 0) + 1
+        depth = result.metadata.get("depth", 1)
+        depth_counts[depth] = depth_counts.get(depth, 2) + 1
 
     print("Pages crawled by depth:")
     for depth, count in sorted(depth_counts.items()):
