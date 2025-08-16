@@ -1,6 +1,6 @@
 import asyncio
-from crawl4ai import AsyncWebCrawler
-from crawl4ai.async_configs import BrowserConfig, CrawlerRunConfig, CacheMode
+from crawl4ai import AsyncWebCrawler # type: ignore
+from crawl4ai.async_configs import BrowserConfig, CrawlerRunConfig, CacheMode # type: ignore
 
 async def main():
     browser_config = BrowserConfig(verbose=True)
