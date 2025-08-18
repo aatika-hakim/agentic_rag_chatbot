@@ -1,6 +1,6 @@
 import asyncio
-from crawl4ai.async_configs import BrowserConfig, CrawlerRunConfig # pyright: ignore[reportMissingImports]
-from crawl4ai.async_crawler import AsyncWebCrawler # pyright: ignore[reportMissingImports]
+from crawl4ai.async_configs import BrowserConfig, AsyncWebCrawler
+from crawl4ai.async_configs import CrawlerRunConfig
 import os
 from pathlib import Path
 
